@@ -27,7 +27,31 @@ class _SimpleMapState extends State<SimpleMap> {
 
   void _changeMapType() {
     setState(() {
-          _defaultMapType = _defaultMapType == MapType.normal ? MapType.satellite : MapType.normal;
+      _defaultMapType = _defaultMapType == MapType.normal
+          ? MapType.satellite
+          : MapType.normal;
+    });
+  }
+
+  final Set<Marker> _markers = {};
+  LatLng _lastMapPosition = _kMapCenter;
+
+  void _onCameraMove(CameraPosition position) {
+    _lastMapPosition = position.target;
+  }
+
+  void _onAddMarkerButtonPressed() {
+    setState(() {
+      _markers.add(
+        Marker(
+          markerId: MarkerId(_lastMapPosition.toString()),
+          position: _lastMapPosition,
+          infoWindow: const InfoWindow(
+          title: 'DianApps',
+          snippet: '5 Star Rating',
+           ),
+          icon: BitmapDescriptor.defaultMarker, ),
+        );
     });
   }
 
@@ -38,8 +62,10 @@ class _SimpleMapState extends State<SimpleMap> {
       body: Stack(
         children: [
           GoogleMap(
-           myLocationEnabled: true,
+            myLocationEnabled: true,
             mapType: _defaultMapType,
+            onCameraMove: _onCameraMove,
+            markers: _markers,
             onMapCreated: _onMapCreated,
             initialCameraPosition: _kInitialPosition,
           ),
@@ -51,12 +77,19 @@ class _SimpleMapState extends State<SimpleMap> {
                 elevation: 5,
                 backgroundColor: Colors.teal[200],
                 onPressed: _changeMapType,
-                
-                child: const Icon(Icons.layers),),
-                const SizedBox(height: 16.0,),
+                child: const Icon(Icons.layers),
+              ),
+              const SizedBox(
+                height: 16.0,
+              ),
+              FloatingActionButton(
+                onPressed: _onAddMarkerButtonPressed,
+                materialTapTargetSize: MaterialTapTargetSize.padded,
+                backgroundColor: Colors.green,
+                child: const Icon(Icons.add_location, size: 36.0),
+              ),
             ]),
           ),
-
         ],
       ),
     );

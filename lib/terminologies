@@ -1,3 +1,8 @@
 - initialCameraPosition: This gives the starting position of the map when it is opened for the first time. Here, we gave the Latitude and Longitude of my current loaction(Jaipur), using the CameraPosition Widget which takes the LatLng in its target property. The Camera here describes the view of the user i.e what position in the map should the user be able to view.
 – GoogleMapController: It’s the controller for a single GoogleMap instance running on the host platform. This controller is like any other controller be it TextEditingController, this manages various functionalities like camera position, zoom, animation, etc.
 – onMapCreated: This method is called when the map is created and takes the GoogleMapController as its parameter.
+
+
+for task:
+1- handle services and permissions
+2- Get user’s latitude and longitude

@@ -19,16 +19,38 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // Text(
+            //   'Open Map',
+            //   style: Theme.of(context).textTheme.headline4,
+            // ),
+            // FloatingActionButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/Map');
+            //   },
+            //   child: const Icon(Icons.location_city),
+            // ),
+            // FloatingActionButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/Location');
+            //   },
+            //   child: const Icon(Icons.location_pin),
+            // ),
+            // FloatingActionButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/Places');
+            //   },
+            //   child: const Icon(Icons.place),
+            // ),
             Text(
-              'Open Map',
+              'Find',
               style: Theme.of(context).textTheme.headline4,
             ),
             FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/Map');
-        },
-        child: const Icon(Icons.location_city),
-      ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/MyTask');
+              },
+              child: const Icon(Icons.location_on),
+            ),
           ],
         ),
       ),
